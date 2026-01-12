@@ -26,10 +26,11 @@ public class TrainSeat {
 
     @Enumerated(EnumType.STRING)
     private CoachType coachType;
+
     private Integer totalSeats;
     private Integer availableSeats;
-
+    private Double price;
     // nextToAssign+ numberOfBooking
-    private Integer nextToAssign=1;
-    private BigDecimal price;
+    private Integer seatNumberToAssign;
+
 }

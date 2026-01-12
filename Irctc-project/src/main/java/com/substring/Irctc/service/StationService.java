@@ -2,11 +2,11 @@ package com.substring.Irctc.service;
 
 import com.substring.Irctc.dto.PagedResponse;
 import com.substring.Irctc.dto.StationDto;
-import org.springframework.http.ResponseEntity;
+
 
 public interface StationService {
 
-    ResponseEntity<StationDto> createStation(StationDto stationDto);
+    StationDto createStation(StationDto stationDto);
 
     PagedResponse<StationDto> listOfStation(int page,int size,String sortBy,String sortDir);
 

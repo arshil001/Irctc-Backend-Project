@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TrainRouteRepository extends JpaRepository<TrainRoute, Long> {
+
+
     List<TrainRoute> getByTrain(Train trainId);
 }

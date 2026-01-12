@@ -26,12 +26,12 @@ public  class StationServiceImpl implements com.substring.Irctc.service.StationS
     }
 
     @Override
-    public ResponseEntity<StationDto> createStation(StationDto stationDto) {
+    public StationDto createStation(StationDto stationDto) {
        Station station= modelMapper.map(stationDto, Station.class);
 
       Station savedStation= stationRepository.save(station);
 
-      return new ResponseEntity<>(modelMapper.map(savedStation,StationDto.class), HttpStatus.CREATED);
+      return modelMapper.map(savedStation,StationDto.class);
     }
 
 
@@ -39,7 +39,7 @@ public  class StationServiceImpl implements com.substring.Irctc.service.StationS
     @Override
     public PagedResponse<StationDto> listOfStation(int page, int size, String sortBy, String sortDir) {
 
-        Sort sort = sortDir.trim().equals(sortDir)? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
+        Sort sort = sortDir.trim().equals("asc")? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
 
         Pageable pageable = PageRequest.of(page,size,sort);
         Page<Station> stations = stationRepository.findAll(pageable);
@@ -67,10 +67,10 @@ public  class StationServiceImpl implements com.substring.Irctc.service.StationS
     public StationDto update(Long id, StationDto stationDto) {
         Station station =stationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(" station not found in database for the given id"));
 
-        station.setName(stationDto.getName());
-        station.setCity(stationDto.getCity());
-        station.setState(stationDto.getState());
-        station.setCode(stationDto.getCode());
+            station.setName(stationDto.getName());
+            station.setCity(stationDto.getCity());
+            station.setState(stationDto.getState());
+            station.setCode(stationDto.getCode());
 
       Station station1=  stationRepository.save(station);
 

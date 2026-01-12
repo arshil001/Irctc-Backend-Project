@@ -4,7 +4,6 @@ import com.substring.Irctc.dto.PagedResponse;
 import com.substring.Irctc.dto.StationDto;
 import com.substring.Irctc.service.StationService;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +22,9 @@ public class StationController {
     public ResponseEntity<StationDto> createStation(
             @Valid @RequestBody StationDto stationDto){
 
-       StationDto dto= stationService.createStation(stationDto).getBody();
+       StationDto dto= stationService.createStation(stationDto);
 
-       return new ResponseEntity<>(dto, HttpStatus.CREATED);
+       return new ResponseEntity<>(dto,HttpStatus.CREATED);
 
     }
 
@@ -39,7 +38,6 @@ public class StationController {
         PagedResponse<StationDto> dto =stationService.listOfStation(page, size, sortBy, sortDir);
         return dto;
 
-
     }
 
     @GetMapping("/{id}")
@@ -48,11 +46,11 @@ public class StationController {
       return   stationService.getById(id);
 
     }
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
-        stationService.delete(id);
+        @DeleteMapping("/{id}")
+        public void delete(@PathVariable Long id){
+            stationService.delete(id);
 
-    }
+        }
 
     @PutMapping("/{id}")
     public ResponseEntity<StationDto> update(

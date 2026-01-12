@@ -16,12 +16,14 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TrainRoute {
-    @ManyToOne
-    @JoinColumn(name = "train_id")
-    private Train train;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "train_id")
+    private Train train;
 
     @ManyToOne
     @JoinColumn(name = "station_id")

@@ -26,7 +26,7 @@ public class TrainRouteController {
       return  new ResponseEntity<>(trainRouteService.add(trainRouteDto), HttpStatus.CREATED);
     }
     @GetMapping("/train/{id}")
-    public ResponseEntity<List<TrainRouteDto>> getAll(@PathVariable Long id){
+    public ResponseEntity<List<TrainRouteDto>> getAllRoutesByTrain(@PathVariable Long id){
 
         List<TrainRouteDto> dto=trainRouteService.getRoutesByTrain(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);

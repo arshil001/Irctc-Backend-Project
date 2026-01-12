@@ -34,7 +34,6 @@ public class TrainServiceImpl implements TrainService {
 
      Station sourceStation=  stationRepository.findById(trainDto.getSourceStation().getId()).orElseThrow(()->new ResourceNotFoundException("station not found for the given id " + trainDto.getSourceStation().getId()));
      Station destinationStation= stationRepository.findById(trainDto.getDestinationStation().getId()).orElseThrow(()-> new ResourceNotFoundException("station not found for the given id "+trainDto.getDestinationStation().getId()));
-
      Train train=modelMapper.map(trainDto,Train.class);
      train.setSourceStation(sourceStation);
      train.setDestinationStation(destinationStation);
@@ -74,9 +73,9 @@ public class TrainServiceImpl implements TrainService {
         train.setName(trainDto.getName());
         train.setNumber(trainDto.getNumber());
         train.setTotalDistance(trainDto.getTotalDistance());
+
         Station sourceStation = stationRepository.findById(trainDto.getSourceStation().getId()).orElseThrow(()-> new ResourceNotFoundException("train not found for the given id "+trainDto.getSourceStation().getId()));
         Station destinationStation = stationRepository.findById(trainDto.getDestinationStation().getId()).orElseThrow(()-> new ResourceNotFoundException("train not found for the given id "+trainDto.getDestinationStation().getId()));
-
         train.setSourceStation(sourceStation);
         train.setDestinationStation(destinationStation);
         trainRepository.save(train);
